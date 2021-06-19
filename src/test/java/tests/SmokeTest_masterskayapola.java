@@ -115,7 +115,6 @@ public class SmokeTest_masterskayapola {
                      assertionError.printStackTrace();}
                 Thread.sleep(2000);
             }
-
         }
 
 //        5.Закрыть окно браузера
