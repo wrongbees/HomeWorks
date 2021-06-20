@@ -50,27 +50,27 @@ public class SmokeTest_masterskayapola {
 
 //        2.1 Ввести в поле "Длина помещения" = 6
             WebElement roomLength = driver.findElement(By.name("calc_roomwidth"));
-            setVolume(roomLength, 5, volume[0]);
+            setVolume(roomLength, volume[0]);
 
 //        2.2 Ввести в поле "Ширина помещения" = 4
             WebElement roomWidth = driver.findElement(By.name("calc_roomheight"));
-            setVolume(roomWidth, 5, volume[1]);
+            setVolume(roomWidth, volume[1]);
 
 //        2.3 Ввести в поле "Длина:" = 1200
             WebElement width = driver.findElement(By.name("calc_lamwidth"));
-            setVolume(width, 4, volume[2]);
+            setVolume(width, volume[2]);
 
 //        2.4 Ввести в поле "Ширина:" = 150
             WebElement length = driver.findElement(By.name("calc_lamheight"));
-            setVolume(length, 2, volume[3]);
+            setVolume(length, volume[3]);
 
 //        2.5 Ввести в поле "В упаковке:" = 20
             WebElement inPackage = driver.findElement(By.name("calc_inpack"));
-            setVolume(inPackage, 1, volume[4]);
+            setVolume(inPackage, volume[4]);
 
 //        2.6 Ввести в поле "Цена:" = 555
             WebElement price = driver.findElement(By.name("calc_price"));
-            setVolume(price, 2, volume[5]);
+            setVolume(price, volume[5]);
 
 //        2.7 Выбрать в поле "Направление укладки" = По длине комнаты
             Select layingDirect = new Select(driver.findElement(By.name("calc_direct")));
@@ -78,11 +78,11 @@ public class SmokeTest_masterskayapola {
 
 //        2.8 Ввести в поле "Смещение рядов" = 350
             WebElement bias = driver.findElement(By.name("calc_bias"));
-            setVolume(bias, 1, volume[7]);
+            setVolume(bias, volume[7]);
 
 //        2.9 Ввести в поле "Отступ от стены" = 20
             WebElement walldist = driver.findElement(By.name("calc_walldist"));
-            setVolume(walldist, 1, volume[8]);
+            setVolume(walldist, volume[8]);
 
 //        3.Нажать на кнопку ‘Рассчитать’
             WebElement calculate = driver.findElement(By.xpath("/html/body/div[2]/div/div/article/div/div[1]/div/div[2]/div[1]/div[2]/div[1]/div/form/div/div[3]/div[7]/div/input"));
@@ -106,14 +106,15 @@ public class SmokeTest_masterskayapola {
 
             int i = 0;
             for (WebElement item : elements) {
-                 try {
+                try {
 
-                Assert.assertEquals(item.getText(), volume[9 + (i++)]);
+                    Assert.assertEquals(item.getText(), volume[9 + (i++)]);
 
-                 }catch (AssertionError assertionError){
-                     System.out.println("***********В строчке Длина помещения "+volume[0]+" произошла ошибка!************");
-                     assertionError.printStackTrace();}
-                Thread.sleep(2000);
+                } catch (AssertionError assertionError) {
+                    System.out.println("***********В строчке Длина помещения " + volume[0] + " произошла ошибка!************");
+                    assertionError.printStackTrace();
+                }
+
             }
         }
 
@@ -142,11 +143,8 @@ public class SmokeTest_masterskayapola {
         reader.close();
     }
 
-    private static void setVolume(WebElement element, int repeat, String volume) {
-        element.clear();
-        for (int i = 0; i < repeat; i++)
-            element.sendKeys(Keys.BACK_SPACE);
-
+    private static void setVolume(WebElement element, String volume) {
+        element.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
         element.sendKeys(volume);
     }
 }
